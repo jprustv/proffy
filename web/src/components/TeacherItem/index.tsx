@@ -4,29 +4,37 @@ import './styles.css'
 
 import whatsappIcon from '../../assets/images/icons/whatsapp.svg'
 
-interface TeacherItemProps {
-  title? : string
+export interface Teacher {
+  id : number,
+  name : string,
+  avatar : string,
+  bio : string,
+  cost : number,
+  subject : string,
+  whatsapp : string
 }
 
-const TeacherItem : React.FC<TeacherItemProps> = (props) => {
+interface TeacherItemProps {
+  teacher : Teacher
+}
+
+const TeacherItem : React.FC<TeacherItemProps> = ( { teacher }) => {
   return (
     <article className="teacher-item">
       <header>
-        <img src="https://avatars3.githubusercontent.com/u/11440704?s=460&u=47b433d1818ef1f3deddaa35ed9a830dfef8a2ba&v=4" alt="Jonathan Prust Vernizzi"/>
+        <img src={teacher.avatar} alt={teacher.name}/>
         <div>
-          <strong>Jonathan Prust Vernizzi</strong>
-          <span>Unity 3D</span>
+          <strong>{teacher.name}</strong>
+          <span>{teacher.subject}</span>
         </div>
       </header>
       <p>
-        Ensina desenvolvimento de jogos utilizando Unity3D e linguagem de programação C#.
-        <br /><br />
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque eu sem at est vulputate tincidunt vitae id ante. Pellentesque at tortor tincidunt, interdum tellus id, luctus nibh. Praesent lobortis leo.
+        {teacher.bio}
       </p>
       <footer>
         <p>
           Preço/Hora
-          <strong>R$ 80,00</strong>
+          <strong>R$ {teacher.cost}</strong>
         </p>
         <button type="button">
           <img src={whatsappIcon} alt="Whatsapp"/>
