@@ -1,5 +1,5 @@
-import React, { useState, FormEvent } from 'react'
-import { View, Text, ScrollView, TextInput } from 'react-native'
+import React, { useState, FormEvent, useEffect } from 'react'
+import { View, Text, ScrollView, TextInput, AsyncStorage } from 'react-native'
 
 import styles from './styles'
 import PageHeader from '../../components/PageHeader'
@@ -11,6 +11,8 @@ import api from '../../services/api'
 
 function TeacherList () {
 
+  const [favorites, setFavorites] = useState<number[]>([])
+
   const [isFiltersVisibble, setIsFiltersVisible] = useState(false)
 
   const [subject, setSubject] = useState('')
@@ -18,6 +20,18 @@ function TeacherList () {
   const [time, setTime] = useState('')
 
   const [ teachers, setTeachers ] = useState([])
+
+  useEffect(() => {
+    AsyncStorage.getItem('favorites').then(response => {
+      if (response) {
+        const favoritedTeachers = JSON.parse(response)
+        const favoritedTeachersIds = favoritedTeachers.map((teacher : Teacher) => {
+          return teacher.id
+        })
+        setFavorites(favoritedTeachersIds)
+      }
+    })
+  }, [teachers])
 
   function handleToggleFiltersVisible() {
     setIsFiltersVisible(!isFiltersVisibble)
@@ -96,7 +110,13 @@ function TeacherList () {
         }}
       >
         {teachers.map((teacher : Teacher) => {
-          return <TeacherItem key={teacher.id} teacher={teacher}/>
+          return (
+            <TeacherItem
+              key={teacher.id}
+              teacher={teacher}
+              favorited={favorites.includes(teacher.id)}
+            />
+          )
         })}
       </ScrollView>
 
