@@ -67,7 +67,7 @@ function TeacherList () {
         {isFiltersVisibble && (
           <View style={styles.searchForm}>
             <Text style={styles.label}>Matéria</Text>
-            <View style={styles.picker}>
+            <View style={styles.input}>
               <Picker
                 selectedValue={subject}
                 onValueChange={(itemValue) => setSubject(itemValue)}
