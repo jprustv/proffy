@@ -81,13 +81,21 @@ function TeacherList () {
             <View style={styles.inputGroup}>
               <View style={styles.inputBlock}>
                 <Text style={styles.label}>Dia da semana</Text>
-                <TextInput
-                  style={styles.input}
-                  value={week_day}
-                  onChangeText={text => setWeekDay(text)}
-                  placeholder="Qual o dia?"
-                  placeholderTextColor="#c1bccc"
-                />
+                <View style={styles.input}>
+                  <Picker
+                    selectedValue={week_day}
+                    onValueChange={(itemValue) => setWeekDay(itemValue)}
+                  >
+                    <Picker.Item label="Qual o dia?" value="" />
+                    <Picker.Item label="Domingo" value="0" />
+                    <Picker.Item label="Segunda" value="1" />
+                    <Picker.Item label="Terça" value="2" />
+                    <Picker.Item label="Quarta" value="3" />
+                    <Picker.Item label="Quinta" value="4" />
+                    <Picker.Item label="Sexta" value="5" />
+                    <Picker.Item label="Sábado" value="6" />
+                  </Picker>
+                </View>
               </View>
 
               <View style={styles.inputBlock}>
