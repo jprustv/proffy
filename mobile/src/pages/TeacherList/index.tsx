@@ -1,4 +1,4 @@
-import React, { useState, FormEvent, useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import { View, Text, ScrollView, TextInput, AsyncStorage } from 'react-native'
 
 import styles from './styles'
@@ -22,6 +22,10 @@ function TeacherList () {
   const [ teachers, setTeachers ] = useState([])
 
   useEffect(() => {
+    fetchTeachers()
+  }, [])
+
+  useEffect(() => {
     AsyncStorage.getItem('favorites').then(response => {
       if (response) {
         const favoritedTeachers = JSON.parse(response)
@@ -37,7 +41,7 @@ function TeacherList () {
     setIsFiltersVisible(!isFiltersVisibble)
   }
 
-  async function handleFiltersSubmit() {
+  async function fetchTeachers() {
     const response = await api.get('classes', {
       params : {
         subject,
@@ -94,7 +98,7 @@ function TeacherList () {
               </View>
             </View>
 
-            <RectButton style={styles.submitButton} onPress={handleFiltersSubmit}>
+            <RectButton style={styles.submitButton} onPress={fetchTeachers}>
               <Text style={styles.submitButtonText}>Filtrar</Text>
             </RectButton>
 
