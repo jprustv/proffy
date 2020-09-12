@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { View, Text, ScrollView, TextInput, AsyncStorage } from 'react-native'
+import { View, Text, ScrollView, TextInput, AsyncStorage, Picker } from 'react-native'
 
 import styles from './styles'
 import PageHeader from '../../components/PageHeader'
@@ -67,13 +67,17 @@ function TeacherList () {
         {isFiltersVisibble && (
           <View style={styles.searchForm}>
             <Text style={styles.label}>Matéria</Text>
-            <TextInput
-              style={styles.input}
-              value={subject}
-              onChangeText={text => setSubject(text)}
-              placeholder="Qual a matéria?"
-              placeholderTextColor="#c1bccc"
-            />
+            <View style={styles.picker}>
+              <Picker
+                selectedValue={subject}
+                onValueChange={(itemValue) => setSubject(itemValue)}
+              >
+                <Picker.Item label="Qual a matéria?" value="" />
+                <Picker.Item label="JavaScript" value="Javascript" />
+                <Picker.Item label="PHP" value="PHP" />
+                <Picker.Item label="C#" value="C#" />
+              </Picker>
+            </View>
             <View style={styles.inputGroup}>
               <View style={styles.inputBlock}>
                 <Text style={styles.label}>Dia da semana</Text>

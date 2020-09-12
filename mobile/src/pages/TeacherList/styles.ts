@@ -51,6 +51,16 @@ const styles = StyleSheet.create({
     color : '#fff',
     fontFamily : 'Archivo_700Bold',
     fontSize : 16
+  },
+
+  picker : {
+    height : 54,
+    backgroundColor : '#fff',
+    borderRadius : 8,
+    justifyContent : 'center',
+    paddingHorizontal : 6,
+    marginTop : 4,
+    marginBottom : 16
   }
 })
 
