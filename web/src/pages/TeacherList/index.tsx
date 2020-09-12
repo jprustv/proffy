@@ -16,9 +16,11 @@ function TeacherList() {
 
   const [ teachers, setTeachers ] = useState([])
 
-  async function searchTeachers (e: FormEvent) {
-    e.preventDefault()
+  useEffect(() => {
+    fetchTeachers()
+  }, [])
 
+  async function fetchTeachers() {
     const response = await api.get('classes', {
       params : {
         subject,
@@ -26,15 +28,18 @@ function TeacherList() {
         time
       }
     })
-
     setTeachers(response.data)
+  }
 
+  async function searchTeachersClick (e: FormEvent) {
+    e.preventDefault()
+    await fetchTeachers()
   }
 
   return (
     <div id="page-teacher-list" className="container">
       <PageHeader title="Estes são os proffys disponíveis">
-        <form id="search-teachers" onSubmit={searchTeachers}>
+        <form id="search-teachers" onSubmit={searchTeachersClick}>
           <Select
             name="subject"
             label="Matéria"
@@ -68,7 +73,7 @@ function TeacherList() {
             value={time}
             onChange={e => setTime(e.target.value)}
           />
-          <button type="submit" onClick={searchTeachers}>
+          <button type="submit">
             Filtrar
           </button>
         </form>
