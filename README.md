@@ -3,7 +3,7 @@
 Projeto desenvolvido durante o curso Next Levek Week #2, da [RocketSeat](https://rocketseat.com.br/)
 
 ## Desafios (v2)
-- [ ] Context API para Favoritos
+- [x] Exibir proffys na página de Estudar sem precisar filtrar antes
 - [ ] Autenticação de usuários
 - [ ] Recuperação de senhas
 - [ ] Perfil do proffy
@@ -11,5 +11,6 @@ Projeto desenvolvido durante o curso Next Levek Week #2, da [RocketSeat](https:/
 - [ ] Paginação na listagem de proffys
 - [ ] Exibindo horários disponíveis dos proffys
 - [ ] Salvando seus proffys favoritos no banco de dados
+- [ ] Context API para Favoritos
 - [ ] Logout da aplicação
 - [ ] Deploy da aplicação
