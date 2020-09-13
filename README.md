@@ -4,6 +4,7 @@ Projeto desenvolvido durante o curso Next Levek Week #2, da [RocketSeat](https:/
 
 ## Desafios (v2)
 - [x] Exibir proffys na página de Estudar sem precisar filtrar antes
+- [x] Melhorias filtro de proffys no Mobile
 - [ ] Autenticação de usuários
 - [ ] Recuperação de senhas
 - [ ] Perfil do proffy
