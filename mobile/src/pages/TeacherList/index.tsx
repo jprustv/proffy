@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react'
-import { View, Text, ScrollView, TextInput, AsyncStorage, Picker } from 'react-native'
+import { View, Text, ScrollView, TextInput, AsyncStorage, Picker, Keyboard, TouchableWithoutFeedback } from 'react-native'
 
 import styles from './styles'
 import PageHeader from '../../components/PageHeader'
 import TeacherItem, { Teacher } from '../../components/TeacherItem'
 import { BorderlessButton, RectButton } from 'react-native-gesture-handler'
+
+import DateTimePicker from '@react-native-community/datetimepicker';
 
 import { Feather } from '@expo/vector-icons'
 import api from '../../services/api'
@@ -18,6 +20,8 @@ function TeacherList () {
   const [subject, setSubject] = useState('')
   const [week_day, setWeekDay] = useState('')
   const [time, setTime] = useState('')
+  const [timeInDate, setTimeInDate] = useState(new Date())
+  const [showTimePicker, setShowTimePicker] = useState(false)
 
   const [ teachers, setTeachers ] = useState([])
 
@@ -52,6 +56,20 @@ function TeacherList () {
 
     setIsFiltersVisible(false)
     setTeachers(response.data)
+  }
+
+  function onChangeTime (event : any, selectedDate : any) {
+    setShowTimePicker(false)
+    setTimeInDate(selectedDate)
+    let hours : string = selectedDate.getHours().toString()
+    hours = hours.length == 1 ? `0${hours}` : hours
+    let minutes : string = selectedDate.getMinutes().toString()
+    minutes = minutes.length == 1 ? `0${minutes}` : minutes
+    setTime(`${hours}:${minutes}`)
+  };
+
+   function onTimeInputPress() {
+    setShowTimePicker(true)
   }
 
   return (
@@ -100,13 +118,33 @@ function TeacherList () {
 
               <View style={styles.inputBlock}>
                 <Text style={styles.label}>Horário</Text>
-                <TextInput
-                  style={styles.input}
-                  value={time}
-                  onChangeText={text => setTime(text)}
-                  placeholder="Qual o horário?"
-                  placeholderTextColor="#c1bccc"
-                />
+                <TouchableWithoutFeedback
+                  onPress={onTimeInputPress}
+                >
+                  <View style={styles.input}>
+                    <Text>{time ? time : 'Qual o horário?'}</Text>
+                  </View>
+
+                  {/*
+                    <TextInput
+                      style={styles.input}
+                      value={time}
+                      onChangeText={text => setTime(text)}
+                      onFocus={onTimeInputPress}
+                      placeholder="Qual o horário?"
+                      placeholderTextColor="#c1bccc"
+                    />
+                    */}
+                </TouchableWithoutFeedback>
+                {showTimePicker && (
+                  <DateTimePicker
+                    value={timeInDate}
+                    mode="time"
+                    is24Hour={true}
+                    display="default"
+                    onChange={onChangeTime}
+                  />
+                )}
               </View>
             </View>
 
