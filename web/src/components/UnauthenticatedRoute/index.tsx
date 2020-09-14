@@ -1,11 +1,14 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Route, Redirect, RouteProps } from "react-router-dom";
+import { AuthContext } from "../../contexts/auth";
 
 const UnauthenticatedRoute : React.FC<RouteProps> = (props) => {
-  const isAuthenticated = false
+
+  const { signed } = useContext(AuthContext)
+
   return (
     <Route {...props}>
-      {!isAuthenticated ? (
+      {!signed ? (
         props.children
       ) : (
         <Redirect to="/" />

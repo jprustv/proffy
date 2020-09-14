@@ -18,7 +18,7 @@ function Routes () {
           <Route path="/give-classes" component={TeacherForm} />
         </AuthenticatedRoute>
         <UnauthenticatedRoute exact path="/signin">
-          <Route path="/signin" exact component={SignIn} />
+          <Route path="/signin" component={SignIn} />
         </UnauthenticatedRoute>
       </Switch>
     </BrowserRouter>
