@@ -1,6 +1,16 @@
-# Proffy
+<h1 align="left">Proffy 👋</h1>
+<p>
+  <img alt="Tecnologia" src="https://react-github-badge.netlify.app/assets/images/logo.5d5d9eef.svg" height="50px"/>
+</p>
+<p>
+<b>Powered by React</b>
+</p>
 
-Projeto desenvolvido durante o curso Next Levek Week #2, da [RocketSeat](https://rocketseat.com.br/)
+<p>
+  <img alt="Version" src="https://img.shields.io/badge/version-0.1.0-blue.svg?cacheSeconds=2592000" />
+</p>
+
+> Projeto desenvolvido durante o curso Next Levek Week #2, da [RocketSeat](https://rocketseat.com.br/)
 
 ## Desafios (v2)
 - [x] Exibir proffys na página de Estudar sem precisar filtrar antes
