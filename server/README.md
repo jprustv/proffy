@@ -1,3 +1,12 @@
+# Como utilizar
+
+Rodar os seguintes comandos na pasta server:
+```
+yarn install
+yarn knex:migrate
+yarn start
+```
+
 # Funcionalidades
 
 ## Conexões
