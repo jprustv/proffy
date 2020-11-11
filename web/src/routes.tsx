@@ -12,14 +12,14 @@ function Routes () {
   return (
     <BrowserRouter>
       <Switch>
-        <AuthenticatedRoute exact path="/">
-          <Route path="/" exact component={Landing} />
-          <Route path="/study" component={TeacherList} />
-          <Route path="/give-classes" component={TeacherForm} />
-        </AuthenticatedRoute>
-        <UnauthenticatedRoute exact path="/signin">
+      <UnauthenticatedRoute path="/signin">
           <Route path="/signin" component={SignIn} />
         </UnauthenticatedRoute>
+        <AuthenticatedRoute>            
+            <Route path="/" exact component={Landing} />
+            <Route path="/study" component={TeacherList} />
+            <Route path="/give-classes" component={TeacherForm} />
+        </AuthenticatedRoute>
       </Switch>
     </BrowserRouter>
   )
